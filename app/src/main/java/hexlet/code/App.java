@@ -2,6 +2,7 @@ package hexlet.code;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Command;
 
 @Command(
@@ -13,11 +14,14 @@ import picocli.CommandLine.Command;
 
 public class App implements Runnable{
 
-    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
-    private boolean helpRequested;
+    @Parameters(index = "0", description = "path to first file")
+    private String filepath1;
 
-    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
-    private boolean versionRequested;
+    @Parameters(index = "1", description = "path to second file")
+    private String filepath2;
+
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    private String format = "stylish";
 
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
@@ -26,6 +30,7 @@ public class App implements Runnable{
 
     @Override
     public void run() {
-        System.out.println("Welcome to gendiff CLI application");
+        System.out.printf("Comparing files: %s and %s%n", filepath1, filepath2);
+        System.out.printf("Using format: %s%n", format);
     }
 }
