@@ -23,14 +23,19 @@ public class App implements Runnable{
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format = "stylish";
 
+    @Override
+    public void run() {
+        try {
+            String result = Differ.generate(filepath1, filepath2);
+            System.out.println(result);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
-    }
-
-    @Override
-    public void run() {
-        System.out.printf("Comparing files: %s and %s%n", filepath1, filepath2);
-        System.out.printf("Using format: %s%n", format);
     }
 }
