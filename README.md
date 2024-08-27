@@ -10,5 +10,7 @@
 Gendiff is a command-line utility that compares two configuration files and shows the difference.
 
 ### Usage
-
+#### JSON files
 [![asciicast](https://asciinema.org/a/mGGuXUgvwoqodYhorubfNFzvD.svg)](https://asciinema.org/a/mGGuXUgvwoqodYhorubfNFzvD)
+#### JAML files
+[![asciicast](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz.svg)](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz)

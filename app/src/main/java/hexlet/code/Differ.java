@@ -1,10 +1,6 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Utility class for generating a diff-like representation of the differences
@@ -32,13 +28,36 @@ public final class Differ {
      */
     public static String generate(final String filePath1,
                                   final String filePath2) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        Map<String, Object> map1 = objectMapper.readValue(
-                Files.readString(Paths.get(filePath1)), TreeMap.class);
+        String format1 = getFileExtension(filePath1);
+        String format2 = getFileExtension(filePath2);
 
-        Map<String, Object> map2 = objectMapper.readValue(
-                Files.readString(Paths.get(filePath2)), TreeMap.class);
+        if (!format1.equals(format2)) {
+            throw new IllegalArgumentException(
+                    "Files must be of the same format"
+            );
+        }
+
+        Parser parser = new Parser(format1);
+        Map<String, Object> map1 = parser.parse(filePath1);
+        Map<String, Object> map2 = parser.parse(filePath2);
+
+        return generateDiff(map1, map2);
+    }
+
+    private static String getFileExtension(final String filePath) {
+        int index = filePath.lastIndexOf('.');
+        if (index > 0 && index < filePath.length() - 1) {
+            return filePath
+                    .substring(index + 1)
+                    .toLowerCase();
+        }
+        throw new IllegalArgumentException("File does not have an extension: "
+                + filePath);
+    }
+
+    private static String generateDiff(final Map<String, Object> map1,
+                                       final Map<String, Object> map2) {
 
         StringBuilder result = new StringBuilder("{\n");
 
