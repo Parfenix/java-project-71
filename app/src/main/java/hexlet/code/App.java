@@ -1,11 +1,9 @@
 package hexlet.code;
 
 import picocli.CommandLine;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
-import picocli.CommandLine.Command;
 
-@Command(
+
+@CommandLine.Command(
         name = "gendiff",
         mixinStandardHelpOptions = true,
         version = "gendiff 1.0",
@@ -18,14 +16,14 @@ public class App implements Runnable {
    * The path to the first file.
    * This field is populated via the command line argument.
    */
-  @Parameters(index = "0", description = "path to first file")
+  @CommandLine.Parameters(index = "0", description = "path to first file")
   private String filepath1;
 
   /**
    * The path to the second file.
    * This field is populated via the command line argument.
    */
-  @Parameters(index = "1", description = "path to second file")
+  @CommandLine.Parameters(index = "1", description = "path to second file")
   private String filepath2;
 
   /**
@@ -33,7 +31,7 @@ public class App implements Runnable {
    *   The default value is "stylish". Available formats can be specified via
    *   command line options.
    */
-  @Option(names = {"-f", "--format"},
+  @CommandLine.Option(names = {"-f", "--format"},
           description = "output format [default: stylish]")
   private String format = "stylish";
 

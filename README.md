@@ -14,3 +14,5 @@ Gendiff is a command-line utility that compares two configuration files and show
 [![asciicast](https://asciinema.org/a/mGGuXUgvwoqodYhorubfNFzvD.svg)](https://asciinema.org/a/mGGuXUgvwoqodYhorubfNFzvD)
 #### JAML files
 [![asciicast](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz.svg)](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz)
+#### Example of diff for nested structures
+[![asciicast](https://asciinema.org/a/F5ssKhbJPeG9DQvfi8OfgvtlA.svg)](https://asciinema.org/a/F5ssKhbJPeG9DQvfi8OfgvtlA)

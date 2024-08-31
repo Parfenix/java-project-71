@@ -5,8 +5,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * The {@code Parser} class is responsible for parsing configuration files
@@ -14,31 +14,9 @@ import java.util.TreeMap;
  * It supports parsing into a map of key-value pairs for further processing.
  */
 public final class Parser {
-  /**
-   * An instance of {@code ObjectMapper} used for parsing JSON or YAML files.
-   * This object is initialized based
-   * on the file format provided during the creation
-   * of the {@code Parser} instance.
-   */
-  private final ObjectMapper objectMapper;
-
-  /**
-   * Constructs a {@code Parser} object based on the specified file format.
-   *
-   * @param format the format of
-   * the file to be parsed (e.g., "json", "yaml", "yml").
-   * If the format is unsupported,
-   * an {@code IllegalArgumentException} is thrown.
-   * @throws IllegalArgumentException if the provided format is not supported.
-   */
-  public Parser(final String format) {
-    if ("yaml".equalsIgnoreCase(format) || "yml".equalsIgnoreCase(format)) {
-      this.objectMapper = new ObjectMapper(new YAMLFactory());
-    } else if ("json".equalsIgnoreCase(format)) {
-      this.objectMapper = new ObjectMapper();
-    } else {
-      throw new IllegalArgumentException("Unsupported file format: " + format);
-    }
+  // Private constructor to prevent instantiation of the class
+  private Parser() {
+    // This is a utility class and cannot be instantiated
   }
 
   /**
@@ -48,8 +26,31 @@ public final class Parser {
    * @return a map representing the key-value pairs from the parsed file.
    * @throws Exception if an error occurs during file reading or parsing.
    */
-  public Map<String, Object> parse(final String filePath) throws Exception {
+  public static Map<String, Object> parse(final String filePath)
+          throws Exception {
+    // Determine the format based on the file extension
+    String format = getFileExtension(filePath);
+    ObjectMapper objectMapper;
+
+    if ("yaml".equalsIgnoreCase(format) || "yml".equalsIgnoreCase(format)) {
+      objectMapper = new ObjectMapper(new YAMLFactory());
+    } else if ("json".equalsIgnoreCase(format)) {
+      objectMapper = new ObjectMapper();
+    } else {
+      throw new IllegalArgumentException("Unsupported file format: " + format);
+    }
+
     return objectMapper.readValue(Files.readString(Paths.get(filePath)),
-            TreeMap.class);
+            LinkedHashMap.class);
+  }
+
+  /**
+   * Extracts the file extension from the file path.
+   *
+   * @param filePath the path to the file.
+   * @return the file extension.
+   */
+  private static String getFileExtension(final String filePath) {
+    return filePath.substring(filePath.lastIndexOf('.') + 1);
   }
 }
