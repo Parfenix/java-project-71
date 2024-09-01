@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.formatters;
+
+import hexlet.code.DiffEntry;
 
 import java.util.List;
 
@@ -57,8 +59,9 @@ public final class StylishFormatter {
                         .append(key).append(": ")
                         .append(oldValue)
                         .append("\n");
-                default -> throw new
-                        IllegalStateException("Unexpected value: " + status);
+                default -> throw new IllegalStateException(
+                        "Unexpected value: " + status
+                );
             }
         }
 

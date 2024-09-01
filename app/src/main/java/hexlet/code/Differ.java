@@ -50,13 +50,13 @@ public final class Differ {
      *
      * @param filepath1 the path to the first file.
      * @param filepath2 the path to the second file.
+     * @param format the format of output
      * @return a formatted string of differences.
      * @throws Exception if an error occurs during parsing or comparison.
      */
     public static String generate(final String filepath1,
-                                  final String filepath2) throws Exception {
-        String format1 = getFileExtension(filepath1);
-        String format2 = getFileExtension(filepath2);
+                                  final String filepath2,
+                                  final String format) throws Exception {
 
         // Assuming both files have the same format,
         // otherwise some additional check might be needed
@@ -64,7 +64,7 @@ public final class Differ {
         Map<String, Object> map2 = Parser.parse(filepath2);
 
         List<DiffEntry> diffs = generateDiff(map1, map2);
-        return StylishFormatter.format(diffs);
+        return Formatter.format(diffs, format);
     }
 
     private static String getFileExtension(final String filepath) {
