@@ -45,4 +45,4 @@ jobs:
 
     - name: Show test results
       if: failure()
-      run: cat build/test-results/test/TEST-hexlet.code.DifferTest.xml
+      run: cat build/test-results/test/binary/TEST-hexlet.code.DifferTest.xml
