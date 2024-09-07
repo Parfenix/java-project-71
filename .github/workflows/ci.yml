@@ -31,7 +31,7 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./app/gradlew build
 
     - name: Run tests with coverage
       run: ./gradlew test jacocoTestReport
@@ -45,4 +45,4 @@ jobs:
 
     - name: Show test results
       if: failure()
-      run: cat build/test-results/test/*.xml
+      run: cat build/test-results/test/TEST-hexlet.code.DifferTest.xml
