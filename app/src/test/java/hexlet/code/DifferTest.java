@@ -83,6 +83,104 @@ public class DifferTest {
     // Сравнение результата с ожидаемым значением
     assertEquals(expected.trim(), result.trim());
   }
+
+  /**
+   * Test comparing two YAML files and verifying the output in JSON format.
+   *
+   * <p>This test reads two YAML files, compares them using the Differ class,
+   * and verifies that the resulting JSON string matches the expected output.
+   * The expected JSON includes keys,
+   * their statuses (added, removed, changed, unchanged),
+   * and the corresponding old and new values where applicable.</p>
+   *
+   * @throws Exception if there is an error
+   * during the comparison or JSON generation.
+   */
+  @Test
+  public void testCompareYAMLFilesJSONFormat() throws Exception {
+    String filePath1 = "src/test/resources/file1.yml";
+    String filePath2 = "src/test/resources/file2.yml";
+
+    String expected = """
+            [ {
+              "key" : "chars1",
+              "status" : "unchanged"
+            }, {
+              "key" : "chars2",
+              "status" : "changed",
+              "oldValue" : [ "d", "e", "f" ],
+              "newValue" : false
+            }, {
+              "key" : "checked",
+              "status" : "changed",
+              "oldValue" : false,
+              "newValue" : true
+            }, {
+              "key" : "default",
+              "status" : "changed",
+              "oldValue" : null,
+              "newValue" : [ "value1", "value2" ]
+            }, {
+              "key" : "id",
+              "status" : "changed",
+              "oldValue" : 45,
+              "newValue" : null
+            }, {
+              "key" : "key1",
+              "status" : "removed",
+              "oldValue" : "value1",
+              "newValue" : null
+            }, {
+              "key" : "key2",
+              "status" : "added",
+              "oldValue" : null,
+              "newValue" : "value2"
+            }, {
+              "key" : "numbers1",
+              "status" : "unchanged"
+            }, {
+              "key" : "numbers2",
+              "status" : "changed",
+              "oldValue" : [ 2, 3, 4, 5 ],
+              "newValue" : [ 22, 33, 44, 55 ]
+            }, {
+              "key" : "numbers3",
+              "status" : "removed",
+              "oldValue" : [ 3, 4, 5 ],
+              "newValue" : null
+            }, {
+              "key" : "numbers4",
+              "status" : "added",
+              "oldValue" : null,
+              "newValue" : [ 4, 5, 6 ]
+            }, {
+              "key" : "obj1",
+              "status" : "added",
+              "oldValue" : null,
+              "newValue" : {
+                "nestedKey" : "value",
+                "isNested" : true
+              }
+            }, {
+              "key" : "setting1",
+              "status" : "changed",
+              "oldValue" : "Some value",
+              "newValue" : "Another value"
+            }, {
+              "key" : "setting2",
+              "status" : "changed",
+              "oldValue" : 200,
+              "newValue" : 300
+            }, {
+              "key" : "setting3",
+              "status" : "changed",
+              "oldValue" : true,
+              "newValue" : "none"
+            } ]
+            """;
+
+    String result = Differ.generate(filePath1, filePath2, "json");
+
+    assertEquals(expected.trim(), result.trim());
+  }
 }
-
-

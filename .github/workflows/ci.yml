@@ -2,9 +2,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -38,7 +38,8 @@ jobs:
 
     - name: Upload coverage to Code Climate
       run: |
-        bash <(curl -s https://codeclimate.com/test_reports)
+        ./gradlew jacocoTestReport
+        bash <(curl -s https://codeclimate.com/test_reports) -r build/reports/jacoco/test/jacocoTestReport.xml
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
 

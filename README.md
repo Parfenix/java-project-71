@@ -16,5 +16,7 @@ Gendiff is a command-line utility that compares two configuration files and show
 [![asciicast](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz.svg)](https://asciinema.org/a/HNqnQZLy96R7UlWiiyjPAGumz)
 #### Example of diff for nested structures
 [![asciicast](https://asciinema.org/a/F5ssKhbJPeG9DQvfi8OfgvtlA.svg)](https://asciinema.org/a/F5ssKhbJPeG9DQvfi8OfgvtlA)
-#### Example of diff with plain output
+#### Example of diff with plain output format
 [![asciicast](https://asciinema.org/a/FHTEOnGvtzUlV3kjV20hc9afx.svg)](https://asciinema.org/a/FHTEOnGvtzUlV3kjV20hc9afx)
+#### Exapmle of diff with JSON output format
+[![asciicast](https://asciinema.org/a/GYo8jvNzau4xnOTVPeSent1Ku.svg)](https://asciinema.org/a/GYo8jvNzau4xnOTVPeSent1Ku)
