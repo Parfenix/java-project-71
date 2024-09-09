@@ -4,25 +4,8 @@ import hexlet.code.DiffEntry;
 
 import java.util.List;
 
-/**
- *  The {@code StylishFormatter} class provides methods for formatting the
- *  differences between two data structures in a stylish format.
-*/
-public final class StylishFormatter {
+public class StylishFormatter {
 
-    /**
-     * Private constructor to prevent instantiation.
-     */
-    private StylishFormatter() {
-
-    }
-
-    /**
-     * Formats the list of differences into a stylish string.
-     *
-     * @param diffEntries the list of differences to format.
-     * @return the formatted string representing the differences.
-     */
     public static String format(final List<DiffEntry> diffEntries) {
         StringBuilder result = new StringBuilder("{\n");
 
@@ -56,7 +39,8 @@ public final class StylishFormatter {
                             .append("\n");
                 }
                 case "unchanged" -> result.append("    ")
-                        .append(key).append(": ")
+                        .append(key)
+                        .append(": ")
                         .append(oldValue)
                         .append("\n");
                 default -> throw new IllegalStateException(

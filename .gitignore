@@ -1,0 +1,13 @@
+app/.gradle
+build/
+
+**/logs/
+.classpath
+.project*
+.settings
+bin/
+.idea/
+.vscode/
+
+### Mac OS ###
+.DS_Store

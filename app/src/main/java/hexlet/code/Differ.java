@@ -7,21 +7,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-public final class Differ {
-
-    private Differ() {
-        // Private constructor to prevent instantiation
+public class Differ {
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, Formatter.FORMAT_STYLISH);
     }
 
-    /**
-     * Generates a list of differences between two maps.
-     *
-     * @param map1 the first map to compare.
-     * @param map2 the second map to compare.
-     * @return a list of differences.
-     */
-    public static List<DiffEntry> generateDiff(final Map<String, Object> map1,
-                                               final Map<String, Object> map2) {
+    public static List<DiffEntry> generateDiff(final Map<String, Object> map1, final Map<String, Object> map2) {
         Set<String> allKeys = new TreeSet<>(map1.keySet());
         allKeys.addAll(map2.keySet());
 
@@ -45,21 +36,9 @@ public final class Differ {
         return diffs;
     }
 
-    /**
-     * Generates a formatted string showing the differences between two files.
-     *
-     * @param filepath1 the path to the first file.
-     * @param filepath2 the path to the second file.
-     * @param format the format of output
-     * @return a formatted string of differences.
-     * @throws Exception if an error occurs during parsing or comparison.
-     */
-    public static String generate(final String filepath1,
-                                  final String filepath2,
-                                  final String format) throws Exception {
+    public static String generate(final String filepath1, final String filepath2, final String format)
+            throws Exception {
 
-        // Assuming both files have the same format,
-        // otherwise some additional check might be needed
         Map<String, Object> map1 = Parser.parse(filepath1);
         Map<String, Object> map2 = Parser.parse(filepath2);
 
@@ -67,7 +46,4 @@ public final class Differ {
         return Formatter.format(diffs, format);
     }
 
-    private static String getFileExtension(final String filepath) {
-        return filepath.substring(filepath.lastIndexOf(".") + 1);
-    }
 }
