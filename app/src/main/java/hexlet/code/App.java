@@ -13,7 +13,7 @@ import picocli.CommandLine.Option;
         description = "Compares two configuration files and shows a difference."
 )
 
-public class App implements Runnable {
+public final class App implements Runnable {
 
     @Parameters(index = "0", description = "path to first file")
     private String filepath1;
@@ -25,7 +25,13 @@ public class App implements Runnable {
             description = "output format [default: stylish]")
     private String format = "stylish";
 
-
+    /**
+     * Runs the main logic of the application.
+     * This method is invoked when the command-line application is executed.
+     * It compares two configuration files and prints the difference in the specified format.
+     *
+     * @throws Exception if an error occurs during the generation of the difference.
+     */
     @Override
     public void run() {
         try {
